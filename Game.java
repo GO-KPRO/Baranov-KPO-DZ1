@@ -33,6 +33,9 @@ public class Game {
             System.out.println("B - black cell");
             System.out.println("P - cell for possible move");
             System.out.println("O - empty cell");
+            System.out.println("Position - a b");
+            System.out.println("a - vertical coordinate");
+            System.out.println("b - horizontal coordinate");
             while (true) {
                 if ((gameField.blackCount() + gameField.whiteCount() < 64) && (gameField.blackCount() != 0) && (gameField.whiteCount() != 0) && (gameField.whitePossibleCount() != 0)) {
                     System.out.println("White move");
@@ -77,6 +80,9 @@ public class Game {
             System.out.println("B - black cell");
             System.out.println("P - cell for possible move");
             System.out.println("O - empty cell");
+            System.out.println("Position - a b");
+            System.out.println("a - vertical coordinate");
+            System.out.println("b - horizontal coordinate");
             while (true) {
                 if ((gameField.blackCount() + gameField.whiteCount() < 64) && (gameField.blackCount() != 0) && (gameField.whiteCount() != 0) && (gameField.whitePossibleCount() != 0)) {
                     System.out.println("Your move");
