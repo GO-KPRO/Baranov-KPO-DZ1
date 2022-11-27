@@ -127,6 +127,6 @@ public class Game implements Playable{
         return ((gameField.blackCount() + gameField.whiteCount() < 64) && (gameField.blackCount() != 0) && (gameField.whiteCount() != 0) && (gameField.blackPossibleCount() != 0));
     }
     private boolean canNobodyMove() {
-        return ((gameField.blackPossibleCount() != 0) && (gameField.whitePossibleCount() != 0));
+        return ((gameField.blackPossibleCount() == 0) && (gameField.whitePossibleCount() == 0));
     }
 }
