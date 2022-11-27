@@ -4,7 +4,7 @@ public class Player implements Gamer {
     private final String name;
     private String team;
     private int score = 0;
-    Player(String Name) {
+    public Player(String Name) {
         name = Name;
     }
     public void setScore(int Score) {
