@@ -18,6 +18,19 @@ public class Field {
         gameField.get(3).get(4).changeToBlack();
         gameField.get(4).get(3).changeToBlack();
     }
+    private Pair runner(char colour, int a, int b, int i, int j) {
+        int aCur = a;
+        int bCur = b;
+        while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
+            if ((gameField.get(i + aCur).get(j + bCur).getColour() == colour)) {
+                aCur += a;
+                bCur += b;
+            } else {
+                break;
+            }
+        }
+        return new Pair(aCur, bCur);
+    }
     public void outField() {
         System.out.println("  1_2_3_4_5_6_7_8 ");
         for (int i = 0; i < 8; ++i) {
@@ -37,16 +50,9 @@ public class Field {
                     char curColour = gameField.get(i).get(j).getColour();
                     for (int a = -1; a <= 1; ++a) {
                         for (int b = -1; b <= 1; ++b) {
-                            int aCur = a;
-                            int bCur = b;
-                            while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                                if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W')) {
-                                    aCur += a;
-                                    bCur += b;
-                                } else {
-                                    break;
-                                }
-                            }
+                            Pair cur = runner('W', a, b, i, j);
+                            int aCur = cur.getFirst();
+                            int bCur = cur.getSecond();
                             if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
                                 if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
                                     curColour = 'P';
@@ -71,16 +77,9 @@ public class Field {
                     char curColour = gameField.get(i).get(j).getColour();
                     for (int a = -1; a <= 1; ++a) {
                         for (int b = -1; b <= 1; ++b) {
-                            int aCur = a;
-                            int bCur = b;
-                            while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                                if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B')) {
-                                    aCur += a;
-                                    bCur += b;
-                                } else {
-                                    break;
-                                }
-                            }
+                            Pair cur = runner('B', a, b, i, j);
+                            int aCur = cur.getFirst();
+                            int bCur = cur.getSecond();
                             if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
                                 if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
                                     curColour = 'P';
@@ -126,16 +125,9 @@ public class Field {
                 if (gameField.get(i).get(j).getColour() == 'O') {
                     for (int a = -1; a <= 1; ++a) {
                         for (int b = -1; b <= 1; ++b) {
-                            int aCur = a;
-                            int bCur = b;
-                                while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                                    if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B')) {
-                                        aCur += a;
-                                        bCur += b;
-                                    } else {
-                                        break;
-                                    }
-                                }
+                            Pair cur = runner('B', a, b, i, j);
+                            int aCur = cur.getFirst();
+                            int bCur = cur.getSecond();
                                 if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
                                     if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
                                         flag = true;
@@ -159,16 +151,9 @@ public class Field {
                 if (gameField.get(i).get(j).getColour() == 'O') {
                     for (int a = -1; a <= 1; ++a) {
                         for (int b = -1; b <= 1; ++b) {
-                            int aCur = a;
-                            int bCur = b;
-                            while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                                if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W')) {
-                                    aCur += a;
-                                    bCur += b;
-                                } else {
-                                    break;
-                                }
-                            }
+                            Pair cur = runner('W', a, b, i, j);
+                            int aCur = cur.getFirst();
+                            int bCur = cur.getSecond();
                             if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
                                 if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
                                     flag = true;
@@ -192,16 +177,9 @@ public class Field {
             if (gameField.get(i).get(j).getColour() == 'O') {
                 for (int a = -1; a <= 1; ++a) {
                     for (int b = -1; b <= 1; ++b) {
-                        int aCur = a;
-                        int bCur = b;
-                        while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                            if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B')) {
-                                aCur += a;
-                                bCur += b;
-                            } else {
-                                break;
-                            }
-                        }
+                        Pair cur = runner('B', a, b, i, j);
+                        int aCur = cur.getFirst();
+                        int bCur = cur.getSecond();
                         if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
                             if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
                                 flag = true;
@@ -234,16 +212,9 @@ public class Field {
             if (gameField.get(i).get(j).getColour() == 'O') {
                 for (int a = -1; a <= 1; ++a) {
                     for (int b = -1; b <= 1; ++b) {
-                        int aCur = a;
-                        int bCur = b;
-                        while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                            if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W')) {
-                                aCur += a;
-                                bCur += b;
-                            } else {
-                                break;
-                            }
-                        }
+                        Pair cur = runner('W', a, b, i, j);
+                        int aCur = cur.getFirst();
+                        int bCur = cur.getSecond();
                         if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
                             if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
                                 flag = true;
@@ -269,9 +240,7 @@ public class Field {
         }
     }
     public void blackComputerMove() {
-        int maxScore = 0;
-        int maxi = 0;
-        int maxj = 0;
+        int maxScore = 0, maxi = 0, maxj = 0;
         for (int i = 0; i <= 7; ++i) {
             for (int j = 0; j <= 7; ++j) {
                 int curScore;
@@ -285,20 +254,11 @@ public class Field {
                 if (gameField.get(i).get(j).getColour() == 'O') {
                     for (int a = -1; a <= 1; ++a) {
                         for (int b = -1; b <= 1; ++b) {
-                            int aCur = a;
-                            int bCur = b;
-                            while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                                if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W')) {
-                                    aCur += a;
-                                    bCur += b;
-                                } else {
-                                    break;
-                                }
-                            }
+                            Pair cur = runner('W', a, b, i, j);
+                            int aCur = cur.getFirst(), bCur = cur.getSecond();
                             if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
                                 if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
-                                    int n = i;
-                                    int m = j;
+                                    int n = i, m = j;
                                     for (int x = 0; x < max(abs(bCur), abs(aCur)); ++x) {
                                         if (((n > 0) && (n < 7) && (m == 0 || m == 7)) || ((m > 0) && (m < 7) && (n == 0 || n == 7))) {
                                             curScore += 20;
@@ -321,5 +281,21 @@ public class Field {
             }
         }
         blackMove(maxi + 1, maxj + 1);
+    }
+}
+
+class Pair{
+    private int first;
+    private int second;
+    public Pair(int f, int s) {
+        first = f;
+        second = s;
+    }
+    public int getFirst() {
+        return first;
+    }
+
+    public int getSecond() {
+        return second;
     }
 }
