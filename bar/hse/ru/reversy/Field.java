@@ -19,7 +19,9 @@ public class Field {
         gameField.get(4).get(3).changeToBlack();
     }
     public void outField() {
+        System.out.println("  1_2_3_4_5_6_7_8 ");
         for (int i = 0; i < 8; ++i) {
+            System.out.printf("%d|", i + 1);
             for (int j = 0; j < 8; ++j) {
                 System.out.printf("%c ", gameField.get(i).get(j).getColour());
             }
@@ -27,9 +29,9 @@ public class Field {
         }
     }
     public void outFieldBlack() {
-        System.out.println("  1 2 3 4 5 6 7 8");
+        System.out.println("  1_2_3_4_5_6_7_8 ");
         for (int i = 0; i < 8; ++i) {
-            System.out.printf("%d ", i + 1);
+            System.out.printf("%d|", i + 1);
             for (int j = 0; j < 8; ++j) {
                 if (gameField.get(i).get(j).getColour() == 'O') {
                     char curColour = gameField.get(i).get(j).getColour();
@@ -61,9 +63,9 @@ public class Field {
         }
     }
     public void outFieldWhite() {
-        System.out.println("  1 2 3 4 5 6 7 8 ");
+        System.out.println("  1_2_3_4_5_6_7_8 ");
         for (int i = 0; i < 8; ++i) {
-            System.out.printf("%d ", i + 1);
+            System.out.printf("%d|", i + 1);
             for (int j = 0; j < 8; ++j) {
                 if (gameField.get(i).get(j).getColour() == 'O') {
                     char curColour = gameField.get(i).get(j).getColour();
@@ -186,75 +188,85 @@ public class Field {
         --i;
         --j;
         boolean flag = false;
-        if (gameField.get(i).get(j).getColour() == 'O') {
-            for (int a = -1; a <= 1; ++a) {
-                for (int b = -1; b <= 1; ++b) {
-                    int aCur = a;
-                    int bCur = b;
-                    while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                        if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B')) {
-                            aCur += a;
-                            bCur += b;
-                        } else {
-                            break;
+        if ((i >= 0) && (i <= 7) && (j >= 0) && (j <= 7)) {
+            if (gameField.get(i).get(j).getColour() == 'O') {
+                for (int a = -1; a <= 1; ++a) {
+                    for (int b = -1; b <= 1; ++b) {
+                        int aCur = a;
+                        int bCur = b;
+                        while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
+                            if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B')) {
+                                aCur += a;
+                                bCur += b;
+                            } else {
+                                break;
+                            }
                         }
-                    }
-                    if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
-                        if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
-                            flag = true;
-                            int n = i;
-                            int m = j;
-                            for (int x = 0; x < max(abs(bCur), abs(aCur)); ++x) {
-                                gameField.get(n).get(m).changeToWhite();
-                                n += a;
-                                m += b;
+                        if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
+                            if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                                flag = true;
+                                int n = i;
+                                int m = j;
+                                for (int x = 0; x < max(abs(bCur), abs(aCur)); ++x) {
+                                    gameField.get(n).get(m).changeToWhite();
+                                    n += a;
+                                    m += b;
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        if (!flag) {
+            if (!flag) {
+                System.out.println("Wrong position");
+            }
+            return flag;
+        } else {
             System.out.println("Wrong position");
+            return flag;
         }
-        return flag;
     }
     public boolean blackMove(int i, int j) {
         --i;
         --j;
         boolean flag = false;
-        if (gameField.get(i).get(j).getColour() == 'O') {
-            for (int a = -1; a <= 1; ++a) {
-                for (int b = -1; b <= 1; ++b) {
-                    int aCur = a;
-                    int bCur = b;
-                    while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
-                        if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W')) {
-                            aCur += a;
-                            bCur += b;
-                        } else {
-                            break;
+        if ((i >= 0) && (i <= 7) && (j >= 0) && (j <= 7)) {
+            if (gameField.get(i).get(j).getColour() == 'O') {
+                for (int a = -1; a <= 1; ++a) {
+                    for (int b = -1; b <= 1; ++b) {
+                        int aCur = a;
+                        int bCur = b;
+                        while ((((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7)))) {
+                            if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W')) {
+                                aCur += a;
+                                bCur += b;
+                            } else {
+                                break;
+                            }
                         }
-                    }
-                    if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
-                        if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
-                            flag = true;
-                            int n = i;
-                            int m = j;
-                            for (int x = 0; x < max(abs(bCur), abs(aCur)); ++x) {
-                                gameField.get(n).get(m).changeToBlack();
-                                n += a;
-                                m += b;
+                        if (((i + aCur >= 0) && (i + aCur <= 7)) && ((j + bCur >= 0) && (j + bCur <= 7))) {
+                            if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                                flag = true;
+                                int n = i;
+                                int m = j;
+                                for (int x = 0; x < max(abs(bCur), abs(aCur)); ++x) {
+                                    gameField.get(n).get(m).changeToBlack();
+                                    n += a;
+                                    m += b;
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        if (!flag) {
+            if (!flag) {
+                System.out.println("Wrong position");
+            }
+            return flag;
+        } else {
             System.out.println("Wrong position");
+            return flag;
         }
-        return flag;
     }
     public void blackComputerMove() {
         int maxScore = 0;

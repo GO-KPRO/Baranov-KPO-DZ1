@@ -27,9 +27,9 @@ public class Menu {
         System.out.println("exit - exit and stop the program");
         Scanner in = new Scanner(System.in);
             switch (in.nextLine()) {
-                case ("PvP") -> curGame.runGame("PvP");
-                case ("PvE") -> curGame.runGame("PvE");
-                case ("PvhE") -> curGame.runGame("PvhE");
+                case ("PvP") -> curGame.runPvPGame();
+                case ("PvE") -> curGame.runPvEGame();
+                case ("PvhE") -> curGame.runPvhEGame();
                 case ("SB") -> curGame.showScoreBoard();
                 case ("MS") -> curGame.showMaxScore();
                 case ("exit") -> {

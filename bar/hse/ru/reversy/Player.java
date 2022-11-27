@@ -1,6 +1,6 @@
 package bar.hse.ru.reversy;
 
-public class Player {
+public class Player implements Gamer{
     private final String name;
     private String team;
     private int score = 0;
