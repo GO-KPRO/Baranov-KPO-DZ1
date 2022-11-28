@@ -58,7 +58,7 @@ public class Field {
                             int aCur = cur.getFirst();
                             int bCur = cur.getSecond();
                             if (this.inField(i + aCur, j + bCur)) {
-                                if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                                if (wasChangedBlack(i, j, a, b, aCur, bCur)) {
                                     curColour = 'P';
                                 }
                             }
@@ -93,7 +93,7 @@ public class Field {
                             int aCur = cur.getFirst();
                             int bCur = cur.getSecond();
                             if (this.inField(i + aCur, j + bCur)) {
-                                if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                                if (wasChangedWhite(i, j, a, b, aCur, bCur)) {
                                     curColour = 'P';
 
                                 }
@@ -149,7 +149,7 @@ public class Field {
                             int aCur = cur.getFirst();
                             int bCur = cur.getSecond();
                                 if (this.inField(i + aCur, j + bCur)) {
-                                    if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                                    if (wasChangedWhite(i, j, a, b, aCur, bCur)) {
                                         flag = true;
                                     }
                                 }
@@ -175,7 +175,7 @@ public class Field {
                             int aCur = cur.getFirst();
                             int bCur = cur.getSecond();
                             if (this.inField(i + aCur, j + bCur)) {
-                                if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                                if (wasChangedBlack(i, j, a, b, aCur, bCur)) {
                                     flag = true;
                                 }
                             }
@@ -201,7 +201,7 @@ public class Field {
                         int aCur = cur.getFirst();
                         int bCur = cur.getSecond();
                         if (this.inField(i + aCur, j + bCur)) {
-                            if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                            if (wasChangedWhite(i, j, a, b, aCur, bCur)) {
                                 flag = true;
                                 int n = i;
                                 int m = j;
@@ -236,7 +236,7 @@ public class Field {
                         int aCur = cur.getFirst();
                         int bCur = cur.getSecond();
                         if (this.inField(i + aCur, j + bCur)) {
-                            if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                            if (wasChangedBlack(i, j, a, b, aCur, bCur)) {
                                 flag = true;
                                 int n = i;
                                 int m = j;
@@ -277,7 +277,7 @@ public class Field {
                             Pair cur = runner('W', a, b, i, j);
                             int aCur = cur.getFirst(), bCur = cur.getSecond();
                             if (this.inField(i + aCur, j + bCur)) {
-                                if ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)))) {
+                                if (wasChangedBlack(i, j, a, b, aCur, bCur)) {
                                     int n = i, m = j;
                                     for (int x = 0; x < max(abs(bCur), abs(aCur)); ++x) {
                                         if (inOuterLine(n, m)) {
@@ -310,5 +310,11 @@ public class Field {
     }
     private boolean inField(int i, int j) {
         return ((i >= 0) && (i <= 7)) && ((j >= 0) && (j <= 7));
+    }
+    private boolean wasChangedBlack(int i, int j, int a, int b, int aCur, int bCur) {
+        return ((gameField.get(i + aCur).get(j + bCur).getColour() == 'B') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b))));
+    }
+    private boolean wasChangedWhite(int i, int j, int a, int b, int aCur, int bCur) {
+        return (gameField.get(i + aCur).get(j + bCur).getColour() == 'W') && ((abs(aCur) > abs(a)) || (abs(bCur) > abs(b)));
     }
 }

@@ -1,12 +1,13 @@
 package bar.hse.ru.reversy.parts;
+import bar.hse.ru.reversy.primitives.Gamer;
 import bar.hse.ru.reversy.primitives.Player;
 
 import java.util.List;
 import java.util.ArrayList;
 
 public class ScoreBoard {
-    private final List<Player> guys = new ArrayList<>();
-    public void addToBoard(Player man) {
+    private final List<Gamer> guys = new ArrayList<>();
+    public void addToBoard(Gamer man) {
         guys.add(man);
     }
     public void outBoard() {
