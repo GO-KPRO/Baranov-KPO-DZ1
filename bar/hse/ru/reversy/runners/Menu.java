@@ -3,7 +3,7 @@ package bar.hse.ru.reversy.runners;
 import java.util.Scanner;
 
 public class Menu {
-    private final Game curGame = new Game();
+    private final Playable curGame = new Game();
 
 
 

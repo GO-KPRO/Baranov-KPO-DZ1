@@ -1,16 +1,16 @@
 package bar.hse.ru.reversy.runners;
 
 import bar.hse.ru.reversy.parts.Field;
+import bar.hse.ru.reversy.primitives.Gamer;
 import bar.hse.ru.reversy.primitives.Player;
 import bar.hse.ru.reversy.parts.ScoreBoard;
-
 import java.util.Scanner;
 
 public class Game implements Playable{
     private Field gameField;
-    private Player player1;
-    private Player player2;
-    private final ScoreBoard board;
+    private Gamer player1;
+    private Gamer player2;
+    private ScoreBoard board;
     public Game() {
         board = new ScoreBoard();
     }
@@ -29,8 +29,6 @@ public class Game implements Playable{
         String Name2 = in.nextLine();
         player1 = new Player(Name1);
         player2 = new Player(Name2);
-        player1.setWhiteTeam();
-        player2.setBlackTeam();
         System.out.println("W - white cell");
         System.out.println("B - black cell");
         System.out.println("P - cell for possible move");
@@ -43,7 +41,7 @@ public class Game implements Playable{
                 System.out.println("White move");
                 gameField.outFieldWhite();
                 System.out.println("Enter the position");
-                while (!gameField.whiteMove(in.nextInt(), in.nextInt())) ;
+                while (!gameField.whiteMove(in.nextInt(), in.nextInt()));
             } else if (canNobodyMove()){
                 break;
             }
@@ -79,7 +77,6 @@ public class Game implements Playable{
         System.out.println("Player name:");
         String Name1 = in.nextLine();
         player1 = new Player(Name1);
-        player1.setWhiteTeam();
         System.out.println("W - white cell");
         System.out.println("B - black cell");
         System.out.println("P - cell for possible move");
