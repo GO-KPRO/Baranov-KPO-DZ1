@@ -8,9 +8,6 @@ public class Cell {
     public void changeToBlack() {
         cellStatus = "black";
     }
-    public String getStatus() {
-        return cellStatus;
-    }
     public char getColour() {
         return switch (cellStatus) {
             case ("void") -> 'O';

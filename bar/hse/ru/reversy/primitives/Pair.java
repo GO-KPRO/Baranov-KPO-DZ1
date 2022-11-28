@@ -1,8 +1,8 @@
 package bar.hse.ru.reversy.primitives;
 
 public class Pair{
-    private int first;
-    private int second;
+    private final int first;
+    private final int second;
     public Pair(int f, int s) {
         first = f;
         second = s;
