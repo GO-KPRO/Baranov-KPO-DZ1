@@ -54,10 +54,9 @@ public class Game implements Playable {
             if (canWhiteMove() && (curMove % 2 == 1)) {
                 System.out.println("White move");
                 gameField.outFieldWhite();
-                System.out.println("Enter the position");
-
                 while (true) {
                     try {
+                        System.out.println("Enter the position");
                         int curInA = in.nextInt();
                         int curInB = in.nextInt();
                         in.nextLine();
@@ -91,9 +90,9 @@ public class Game implements Playable {
             if (canBlackMove() && (curMove % 2 == 0)) {
                 System.out.println("Black move");
                 gameField.outFieldBlack();
-                System.out.println("Enter the position");
                 while (true) {
                     try {
+                        System.out.println("Enter the position");
                         int curInA = in.nextInt();
                         int curInB = in.nextInt();
                         in.nextLine();
@@ -164,9 +163,9 @@ public class Game implements Playable {
             if (canWhiteMove() && (curMove % 2 == 1)) {
                 System.out.println("Your move");
                 gameField.outFieldWhite();
-                System.out.println("Enter the position");
                 while (true) {
                     try {
+                        System.out.println("Enter the position");
                         int curInA = in.nextInt();
                         int curInB = in.nextInt();
                         in.nextLine();
