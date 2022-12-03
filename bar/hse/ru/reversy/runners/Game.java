@@ -166,25 +166,30 @@ public class Game implements Playable {
                 gameField.outFieldWhite();
                 System.out.println("Enter the position");
                 while (true) {
-                    int curInA = in.nextInt();
-                    int curInB = in.nextInt();
-                    in.nextLine();
-                    if (gameField.inField(curInA - 1, curInB - 1)) {
-                        if (gameField.whiteMove(curInA, curInB)) {
-                            ++curMove;
-                            fieldHistory.add(gameField.copy());
-                            break;
-                        }
-                    } else {
-                        System.out.println("Wrong position");
-                        System.out.println("Undo the previous move?(yes/no)");
-                        String answer = in.nextLine();
-                        if (answer.equals("yes")) {
-                            cancelMove(2);
-                            break;
+                    try {
+                        int curInA = in.nextInt();
+                        int curInB = in.nextInt();
+                        in.nextLine();
+                        if (gameField.inField(curInA - 1, curInB - 1)) {
+                            if (gameField.whiteMove(curInA, curInB)) {
+                                ++curMove;
+                                fieldHistory.add(gameField.copy());
+                                break;
+                            }
                         } else {
-                            System.out.println("Enter the position again");
+                            System.out.println("Wrong position");
+                            System.out.println("Undo the previous move?(yes/no)");
+                            String answer = in.nextLine();
+                            if (answer.equals("yes")) {
+                                cancelMove(2);
+                                break;
+                            } else {
+                                System.out.println("Enter the position again");
+                            }
                         }
+                    } catch(Exception e) {
+                        System.out.println("Wrong position");
+                        in.nextLine();
                     }
                 }
             } else if (canNobodyMove()) {
@@ -239,26 +244,31 @@ public class Game implements Playable {
                 System.out.println("Your move");
                 gameField.outFieldWhite();
                 while (true) {
-                    System.out.println("Enter the position");
-                    int curInA = in.nextInt();
-                    int curInB = in.nextInt();
-                    in.nextLine();
-                    if (gameField.inField(curInA - 1, curInB - 1)) {
-                        if (gameField.whiteMove(curInA, curInB)) {
-                            ++curMove;
-                            fieldHistory.add(gameField.copy());
-                            break;
-                        }
-                    } else {
-                        System.out.println("Wrong position");
-                        System.out.println("Undo the previous move?(yes/no)");
-                        String answer = in.nextLine();
-                        if (answer.equals("yes")) {
-                            cancelMove(2);
-                            break;
+                    try {
+                        System.out.println("Enter the position");
+                        int curInA = in.nextInt();
+                        int curInB = in.nextInt();
+                        in.nextLine();
+                        if (gameField.inField(curInA - 1, curInB - 1)) {
+                            if (gameField.whiteMove(curInA, curInB)) {
+                                ++curMove;
+                                fieldHistory.add(gameField.copy());
+                                break;
+                            }
                         } else {
-                            System.out.println("Enter the position again");
+                            System.out.println("Wrong position");
+                            System.out.println("Undo the previous move?(yes/no)");
+                            String answer = in.nextLine();
+                            if (answer.equals("yes")) {
+                                cancelMove(2);
+                                break;
+                            } else {
+                                System.out.println("Enter the position again");
+                            }
                         }
+                    } catch (Exception e) {
+                        System.out.println("Wrong position");
+                        in.nextLine();
                     }
                 }
             } else if (canNobodyMove()) {
